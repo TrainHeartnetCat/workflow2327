@@ -22,11 +22,13 @@ import os
 
 # 氨基酸代号：[氨基酸简称, 氨基酸含氢个数(未脱水缩合)]
 amino_acid_table = {'H':['HIS','HIP'], 'D':['ASP'], 'R':['ARG'], 'F':['PHE'], 'A':['ALA'],
-                    'C':['CYS','CYM'], 'G':['GLY'], 'Q':['GLN'], 'E':['GLU','GLH'], 'K':['LYS'],
-                    'L':['LEU'], 'M':['MET'], 'N':['ASN'], 'S':['SER'], 'Y':['TYR'],
+                    'C':['CYS','CYM'], 'G':['GLY'], 'Q':['GLN'], 'E':['GLU','GLH'], 'K':['LYS', 'LYN'],
+                    'L':['LEU'], 'M':['MET'], 'N':['ASN'], 'S':['SER'], 'Y':['TYR', 'TYN'],
                     'T':['THR'], 'I':['ILE'], 'W':['TRP'], 'P':['PRO'], 'V':['VAL'],
                     }
 # E: GLU是脱质子羧基，GLH是质子化羧基
+
+# Y: TYR和TYN上都是正常的羟基，并没有脱质子，似乎只是羟基上H朝向的区别；另外注意TYN这个符号PyMol突变中是没有的，AMBER也是不认的，估计H++脑抽或者什么
 
 def pdb_name_process(pdb):
     # 因为不仅仅在batch_process中(batch_process中是有文件格式筛选的)，有时候会单独调用这个函数，所以依然需要做个必须是pdb的判断，否则cif的话，格式不一样。
